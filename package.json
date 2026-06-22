@@ -4,6 +4,7 @@
   "description": "PWA para seguimiento personal de japonés.",
   "main": "app.js",
   "scripts": {
+    "start": "npx serve . -p 4321",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "npx playwright test",
@@ -23,6 +24,7 @@
   "homepage": "https://github.com/carcaret/kotsukotsu#readme",
   "devDependencies": {
     "@playwright/test": "^1.58.2",
+    "jsdom": "^29.1.1",
     "playwright": "^1.58.2",
     "serve": "^14.2.6",
     "vitest": "^4.1.1"
