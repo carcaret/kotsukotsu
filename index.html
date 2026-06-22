@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0f0f11">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>コツコツ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <header id="header">
+      <h1>コツコツ</h1>
+      <button id="btn-sync" class="sync-btn" title="Estado de sincronización" hidden>
+        <span id="sync-icon" class="sync-icon"></span>
+      </button>
+    </header>
+
+    <main>
+      <section id="state-card" class="card"></section>
+
+      <button id="btn-register" class="btn-primary">+ Registrar sesión hoy</button>
+
+      <div id="form-container" hidden></div>
+
+      <section id="history-section">
+        <h3 class="section-title">Historial reciente</h3>
+        <ul id="history-list" class="history-list"></ul>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
