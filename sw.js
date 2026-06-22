@@ -1,4 +1,4 @@
-const CACHE = 'kotsukotsu-v2';
+const CACHE = 'kotsukotsu-v3';
 const ASSETS = [
   '/',
   '/index.html',
