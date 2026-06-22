@@ -18,7 +18,7 @@
     }
   },
 
-  "onCreateCommand": "npm install && npm install -g @anthropic-ai/claude-code && npx -y claudepluginhub obra/superpowers --plugin superpowers --yes || true && npx -y claudepluginhub juliusbrussee/caveman --plugin caveman --yes || true",
+  "onCreateCommand": "npm install && npm install -g @anthropic-ai/claude-code && npx -y claudepluginhub obra/superpowers --plugin superpowers --yes || true && npx -y claudepluginhub juliusbrussee/caveman --plugin caveman --yes || true && SCPT=$(find /home/node/.claude/plugins/cache/caveman -name caveman-statusline.sh 2>/dev/null | head -1) && [ -n \"$SCPT\" ] && jq --arg s \"bash \\\"$SCPT\\\"\" '.statusLine = {type:\"command\",command:$s}' /home/node/.claude/settings.json > /tmp/cs.json && mv /tmp/cs.json /home/node/.claude/settings.json || true",
   "postStartCommand": "npx playwright install chromium --with-deps && git config core.hooksPath .hooks",
 
   "customizations": {
