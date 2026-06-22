@@ -17,10 +17,35 @@
   <div id="app">
     <header id="header">
       <h1>コツコツ</h1>
-      <button id="btn-sync" class="sync-btn" title="Estado de sincronización" hidden>
-        <span id="sync-icon" class="sync-icon"></span>
-      </button>
+      <div class="header-actions">
+        <button id="btn-sync" class="sync-btn" title="Estado de sincronización" hidden>
+          <span id="sync-icon" class="sync-icon"></span>
+        </button>
+        <button id="btn-settings" class="icon-btn" title="Ajustes">⚙</button>
+      </div>
     </header>
+
+    <div id="settings-panel" hidden>
+      <div class="settings-card">
+        <h2 class="settings-title">Sincronización GitHub</h2>
+        <p class="settings-desc">Token con permiso <code>contents:write</code> en el repo.</p>
+        <form id="settings-form">
+          <div class="input-group">
+            <label for="input-token">Personal Access Token</label>
+            <input type="password" id="input-token" placeholder="ghp_…" autocomplete="off">
+          </div>
+          <div class="input-group">
+            <label for="input-repo">Repositorio</label>
+            <input type="text" id="input-repo" placeholder="usuario/repo" value="carcaret/kotsukotsu">
+          </div>
+          <div class="settings-actions">
+            <button type="submit" class="btn-primary">Guardar</button>
+            <button type="button" id="btn-clear-config" class="btn-secondary">Borrar config</button>
+          </div>
+        </form>
+        <p id="settings-status" class="settings-status"></p>
+      </div>
+    </div>
 
     <main>
       <section id="state-card" class="card"></section>

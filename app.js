@@ -1,7 +1,7 @@
 import { loadData, saveData, mergeData } from './src/state.js';
 import { createEntry, addEntry, getRecentLog } from './src/log.js';
 import { renderStateCard, renderHistory, buildLogForm, showForm, hideForm } from './src/render.js';
-import { syncFromGitHub, syncToGitHub } from './src/github.js';
+import { syncFromGitHub, syncToGitHub, getGitHubConfig, setGitHubConfig } from './src/github.js';
 
 let data = loadData();
 
@@ -10,6 +10,13 @@ const historyListEl = document.getElementById('history-list');
 const formContainerEl = document.getElementById('form-container');
 const btnRegister = document.getElementById('btn-register');
 const btnSync = document.getElementById('btn-sync');
+const btnSettings = document.getElementById('btn-settings');
+const settingsPanel = document.getElementById('settings-panel');
+const settingsForm = document.getElementById('settings-form');
+const settingsStatus = document.getElementById('settings-status');
+const inputToken = document.getElementById('input-token');
+const inputRepo = document.getElementById('input-repo');
+const btnClearConfig = document.getElementById('btn-clear-config');
 
 function render() {
   renderStateCard(data.cycle, stateCardEl);
@@ -26,6 +33,54 @@ function setSyncStatus(status) {
     error: 'Error de sync',
     none: 'Sin token de GitHub configurado',
   }[status] ?? status;
+}
+
+function updateSettingsStatus() {
+  const cfg = getGitHubConfig();
+  if (cfg?.token && cfg?.repo) {
+    settingsStatus.textContent = `✓ Configurado: ${cfg.repo}`;
+    settingsStatus.className = 'settings-status settings-status--ok';
+    inputRepo.value = cfg.repo;
+  } else {
+    settingsStatus.textContent = 'Sin configurar — sync desactivado';
+    settingsStatus.className = 'settings-status settings-status--none';
+  }
+}
+
+function initSettings() {
+  updateSettingsStatus();
+
+  btnSettings.addEventListener('click', () => {
+    settingsPanel.hidden = !settingsPanel.hidden;
+    if (!settingsPanel.hidden) updateSettingsStatus();
+  });
+
+  settingsForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const token = inputToken.value.trim();
+    const repo = inputRepo.value.trim();
+    if (!token || !repo) return;
+    setGitHubConfig(token, repo);
+    inputToken.value = '';
+    updateSettingsStatus();
+    settingsPanel.hidden = true;
+    setSyncStatus('none');
+    syncFromGitHub().then(remote => {
+      if (remote) {
+        data = mergeData(data, remote);
+        saveData(data);
+        render();
+        setSyncStatus('ok');
+      }
+    });
+  });
+
+  btnClearConfig.addEventListener('click', () => {
+    localStorage.removeItem('kotsukotsu_github');
+    localStorage.removeItem('kotsukotsu_sha');
+    updateSettingsStatus();
+    btnSync.hidden = true;
+  });
 }
 
 async function init() {
@@ -65,4 +120,5 @@ async function handleLogSubmit(fields) {
   setSyncStatus(ok ? 'ok' : 'error');
 }
 
+initSettings();
 init();
