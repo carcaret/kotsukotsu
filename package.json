@@ -1,0 +1,30 @@
+{
+  "name": "kotsukotsu",
+  "version": "1.0.0",
+  "description": "PWA para seguimiento personal de japonés.",
+  "main": "app.js",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "npx playwright test",
+    "test:all": "vitest run && npx playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carcaret/kotsukotsu.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/carcaret/kotsukotsu/issues"
+  },
+  "homepage": "https://github.com/carcaret/kotsukotsu#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "playwright": "^1.58.2",
+    "serve": "^14.2.6",
+    "vitest": "^4.1.1"
+  }
+}
