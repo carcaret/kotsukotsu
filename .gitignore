@@ -1,0 +1,9 @@
+.env
+*.env.*
+node_modules/
+.claude/settings.local.json
+test-results/
+.aiplans/**.*
+.aiplans/*
+!.aiplans/.gitkeep.superpowers/
+docs/
