@@ -30,6 +30,7 @@ function setSyncStatus(status) {
 
 async function init() {
   render();
+  btnRegister.disabled = true;
 
   const remote = await syncFromGitHub();
   if (remote) {
@@ -38,6 +39,7 @@ async function init() {
     render();
     setSyncStatus('ok');
   }
+  btnRegister.disabled = false;
 
   btnRegister.addEventListener('click', () => {
     const form = buildLogForm(data.cycle.currentSession, handleLogSubmit);

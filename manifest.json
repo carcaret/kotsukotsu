@@ -2,7 +2,7 @@
   "name": "コツコツ",
   "short_name": "コツコツ",
   "description": "Tracking personal de japonés",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#0f0f11",
   "theme_color": "#0f0f11",
