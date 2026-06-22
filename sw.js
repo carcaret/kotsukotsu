@@ -1,4 +1,4 @@
-const CACHE = 'kotsukotsu-v1';
+const CACHE = 'kotsukotsu-v2';
 const ASSETS = [
   '/',
   '/index.html',
@@ -9,6 +9,7 @@ const ASSETS = [
   '/src/render.js',
   '/src/github.js',
   '/data/data.json',
+  '/apple-touch-icon.png',
 ];
 
 self.addEventListener('install', e =>

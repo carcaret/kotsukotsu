@@ -253,13 +253,18 @@ textarea {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 6px 8px;
+  padding: 10px;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: var(--radius-xs);
-  font-size: 16px;
   color: var(--text-muted);
   transition: color 0.15s var(--ease);
+  -webkit-tap-highlight-color: transparent;
 }
-.icon-btn:hover { color: var(--text-primary); }
+.icon-btn:active { color: var(--text-primary); }
 
 /* ── Settings panel ── */
 #settings-panel {
